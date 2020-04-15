@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoMusicStream", "VideoMusicStream.csproj", "{EDB895C9-658B-4993-AACA-BB4E53441CE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	Release|Any CPU = Release|Any CPU
+	Tools|Any CPU = Tools|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDB895C9-658B-4993-AACA-BB4E53441CE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDB895C9-658B-4993-AACA-BB4E53441CE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDB895C9-658B-4993-AACA-BB4E53441CE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDB895C9-658B-4993-AACA-BB4E53441CE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDB895C9-658B-4993-AACA-BB4E53441CE4}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
+		{EDB895C9-658B-4993-AACA-BB4E53441CE4}.Tools|Any CPU.Build.0 = Tools|Any CPU
+	EndGlobalSection
+EndGlobal

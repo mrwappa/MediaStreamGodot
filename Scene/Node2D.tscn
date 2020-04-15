@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/VideoPlayer.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Screend2D.gd" type="Script" id=3]
+[ext_resource path="res://Fonts/font.tres" type="DynamicFont" id=4]
+
+[node name="Node2D" type="Node2D"]
+light_mask = 0
+script = ExtResource( 3 )
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+process_priority = 1
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AlbumLabel" type="Label" parent="VideoPlayer"]
+visible = false
+margin_left = 83.0
+margin_top = 18.0
+margin_right = 123.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.776471, 0.776471, 0.776471, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
