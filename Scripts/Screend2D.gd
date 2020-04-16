@@ -42,7 +42,7 @@ func _input(event):
 func _process(delta):
 	var currentAudioDuration = audioPlayer.get_stream().get_length()
 	var currentAudioPosition = audioPlayer.get_playback_position()
-	#print(currentAudioDuration - currentAudioPosition)
+	print(currentAudioDuration - currentAudioPosition)
 	if((currentAudioDuration - currentAudioPosition) < 0.09): 
 		newMediaSet()
 		pass 

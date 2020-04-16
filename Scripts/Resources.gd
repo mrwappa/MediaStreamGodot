@@ -11,50 +11,39 @@ var musicDictionary = {}
 var videoDictionary = {}
 var artDictionary = {}
 
-const targetFolder = "Attack on Titan"
+const targetFolder = "Gurren Lagann"
 
 const contentFolderStartIndex = 12
 
+var firstSong = true
+
 var playlist = []
 
-func _init():
+func loadAllMedia():
 	loadMusicAndArt()
 	loadVideos()
 	randomize()
 	playlist.shuffle()
 	pass
 
+func _init():
+	loadAllMedia()
+	pass
+
 func getMediaSet():
-	"""
-	var folder = utility.getRandomListItem(musicFolders) if targetFolder == "" else targetFolder
 	
-	var musicFile = utility.getRandomListItem(musicDictionary[folder])
-	var musicAsset = load(musicPath + folder + "/" + musicFile)
-	
-	var artFile = artDictionary[folder];
-	var artAsset = load(musicPath + folder + "/" + artFile)
-	
-	var videoFile = utility.getRandomListItem(videoDictionary[folder])
-	var videoAsset = null
-	var rerouteIndex = videoFile.find(".reroute");
-	
-	if(rerouteIndex != -1):
-		var videoFolder = videoFile.substr(0,rerouteIndex)
-		videoFile = utility.getRandomListItem(videoDictionary[videoFolder])
-		videoAsset = load(videoPath + videoFolder + "/" + videoFile)
+	var musicObj = null
+	if(targetFolder == ""):
+		musicObj = playlist[playlist.size() - 1]
 		pass
 	else:
-		videoAsset = load(videoPath + folder + "/" + videoFile)
+		for item in playlist:
+			if(item.path.find(targetFolder) != -1):
+				musicObj = item
+				break
+				pass
+			pass
 		pass
-
-	var extensionLength = 4
-	var firstLetterIndex = utility.findFirstLetter(musicFile)
-	var musicName = musicFile.substr(firstLetterIndex, musicFile.length() - firstLetterIndex - extensionLength)
-	
-	return {"video": videoAsset, "audio": musicAsset, "art": artAsset, "musicName" : musicName, "albumName": folder}
-	"""
-	
-	var musicObj = playlist[playlist.size() - 1]
 	
 	var fullPath = musicObj.path
 	
@@ -85,15 +74,14 @@ func getMediaSet():
 		videoAsset = load(videoPath + contentFolder + "/" + videoFile)
 		pass
 	
-	print(musicFile)
-	print(musicName)
-	print(contentFolder)
-	print(musicAsset)
-	print(videoAsset)
-	print(videoFile)
-	
+	if (playlist.size() == 1):
+		loadAllMedia()
+		pass
+	else:
+		playlist.pop_back()
+		pass
+		
 	return {"video": videoAsset, "audio": musicAsset, "art": artAsset, "musicName" : musicName, "albumName": contentFolder}
-	
 	pass
 
 func loadMusicAndArt(): 
