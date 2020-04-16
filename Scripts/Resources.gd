@@ -11,7 +11,7 @@ var musicDictionary = {}
 var videoDictionary = {}
 var artDictionary = {}
 
-const targetFolder = "Gurren Lagann"
+const targetFolder = ""
 
 const contentFolderStartIndex = 12
 
@@ -23,11 +23,11 @@ func loadAllMedia():
 	loadMusicAndArt()
 	loadVideos()
 	randomize()
-	playlist.shuffle()
 	pass
 
 func _init():
 	loadAllMedia()
+	playlist.shuffle()
 	pass
 
 func getMediaSet():
@@ -75,6 +75,7 @@ func getMediaSet():
 		pass
 	
 	if (playlist.size() == 1):
+		playlist.pop_back()
 		loadAllMedia()
 		pass
 	else:
