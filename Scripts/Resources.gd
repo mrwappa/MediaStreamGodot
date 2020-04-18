@@ -23,11 +23,11 @@ func loadAllMedia():
 	loadMusicAndArt()
 	loadVideos()
 	randomize()
+	playlist.shuffle()
 	pass
 
 func _init():
 	loadAllMedia()
-	playlist.shuffle()
 	pass
 
 func getMediaSet():

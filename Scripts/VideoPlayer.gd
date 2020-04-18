@@ -30,7 +30,7 @@ var infoBox = load("res://Textures/InfoBackground.png")
 var stopped = false
 
 func _ready():
-	set_size(windowSize)
+	set_size(windowSize + Vector2(50,50))
 	pass
 
 # warning-ignore:unused_argument
@@ -39,7 +39,6 @@ func _process(delta):
 	if(!is_playing()):
 		play()
 		pass
-
 	pass
 
 func _draw():
