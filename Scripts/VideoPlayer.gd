@@ -33,7 +33,6 @@ func _ready():
 	set_size(windowSize + Vector2(50,50))
 	pass
 
-# warning-ignore:unused_argument
 func _process(delta):
 	update()
 	if(!is_playing()):

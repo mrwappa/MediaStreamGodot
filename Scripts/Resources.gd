@@ -9,6 +9,7 @@ var musicFolders = []
 var videoFolders = []
 var musicDictionary = {}
 var videoDictionary = {}
+var videoDictionaryIndex = {}
 var artDictionary = {}
 
 const targetFolder = ""
@@ -24,9 +25,13 @@ func loadAllMedia():
 	loadVideos()
 	randomize()
 	playlist.shuffle()
+	print(playlist.size())
 	pass
 
 func _init():
+	if(targetFolder != ""):
+		playlist.invert()
+		pass 
 	loadAllMedia()
 	pass
 
@@ -62,17 +67,26 @@ func getMediaSet():
 	var musicAsset = load(fullPath)
 	var videoAsset = null
 	
-	var videoFile = utility.getRandomListItem(videoDictionary[contentFolder]) if (musicObj.subFolder == null) else (musicObj.subFolder + "/" + utility.getRandomListItem(videoDictionary[contentFolder + "/" + musicObj.subFolder]))
+	##GET VIDEO
+	var folderName = contentFolder if (musicObj.subFolder == null) else contentFolder + "/" + musicObj.subFolder
+	var rerouteIndex = videoDictionary[folderName][0].find(".reroute")
 	
-	var rerouteIndex = videoFile.find(".reroute")
 	if(rerouteIndex != -1):
-		var videoFolder = videoFile.substr(0,rerouteIndex)
-		videoFile = utility.getRandomListItem(videoDictionary[videoFolder])
-		videoAsset = load(videoPath + videoFolder + "/" + videoFile)
+		var rerouteFolder = videoDictionary[folderName][0].substr(0,rerouteIndex)
+		folderName = rerouteFolder if (musicObj.subFolder == null) else rerouteFolder + "/" + musicObj.subFolder
+		
 		pass
-	else:
-		videoAsset = load(videoPath + contentFolder + "/" + videoFile)
+	var videoIndex = videoDictionaryIndex[folderName]
+	if(videoIndex > videoDictionary[folderName].size() - 1):
+		videoIndex = 0
+		videoDictionaryIndex[folderName] = 0
 		pass
+	
+	var videoFile = videoDictionary[folderName][videoIndex]
+	videoDictionaryIndex[folderName] = videoIndex + 1
+	videoDictionaryIndex[folderName] = videoIndex + 1
+	videoAsset = load(videoPath + folderName + "/" + videoFile)
+	##GET VIDEO
 	
 	if (playlist.size() == 1):
 		playlist.pop_back()
@@ -118,10 +132,12 @@ func loadVideos():
 			for subFolder in files:
 				var subFolderFiles = utility.listFilesInDirectory(videoPath + folder + "/" + subFolder)
 				videoDictionary[folder + "/" + subFolder] = subFolderFiles
+				videoDictionaryIndex[folder + "/" + subFolder] = 0
 				pass
 			pass
 		else:
 			videoDictionary[folder] = files
+			videoDictionaryIndex[folder] = 0
 			pass
 		
 		pass

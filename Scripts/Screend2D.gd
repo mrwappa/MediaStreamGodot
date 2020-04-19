@@ -22,6 +22,7 @@ func newMediaSet():
 	videoPlayer.musicInfo = { "art": mediaSet.art, "name": mediaSet.musicName, "album": mediaSet.albumName }
 	videoPlayer.play()
 	videoPlayer.set_autoplay(true)
+	videoPlayer.set_volume(0)
 	audioPlayer.play()
 	audioPlayer.set_volume_db(0)
 	pass
@@ -34,15 +35,20 @@ func _ready():
 	newMediaSet()
 	pass
 
-func _input(event):
+func _input(ev):
 	if(Input.is_action_pressed("ui_cancel")):
 		get_tree().quit()
+		
+	if ev is InputEventKey and ev.scancode == KEY_K and not ev.echo:
+		audioPlayer.stop()
+		newMediaSet()
+		pass
 	pass
 
 func _process(delta):
 	var currentAudioDuration = audioPlayer.get_stream().get_length()
 	var currentAudioPosition = audioPlayer.get_playback_position()
-	print(currentAudioDuration - currentAudioPosition)
+	#print(currentAudioDuration - currentAudioPosition)
 	#print(resources.playlist.size())
 	if((currentAudioDuration - currentAudioPosition) < 0.09): 
 		audioPlayer.stop()
