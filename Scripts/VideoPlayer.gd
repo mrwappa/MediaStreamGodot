@@ -66,7 +66,7 @@ func _draw():
 		draw_string(font,Vector2(artWidth + artPadding + fontWPadding, artTargetHeight - fontWPadding + fontYOffset),musicInfo.album, Color(0.83,0.83,0.83,1))
 		#Progress Bar
 		var progressBarWidth = (audioPosition / audioLength) * windowWidth
-		draw_colored_polygon(PoolVector2Array([Vector2(0,windowHeight),Vector2(0,windowHeight - progressBarHeight),Vector2(progressBarWidth,windowHeight - progressBarHeight),Vector2(progressBarWidth,windowHeight)]),Color(0.5,0.5,0.5,0.6))
+		draw_colored_polygon(PoolVector2Array([Vector2(0,windowHeight),Vector2(0,windowHeight - progressBarHeight),Vector2(progressBarWidth,windowHeight - progressBarHeight),Vector2(progressBarWidth,windowHeight)]),Color(0.45,0.45,0.45,0.6))
 		pass
 	#AbsoluteBox
 	draw_colored_polygon(PoolVector2Array([Vector2(0,0),Vector2(windowWidth,0),Vector2(windowWidth,windowHeight),Vector2(0,windowHeight)]),Color(0,0,0,absoluteBoxAlpha))
