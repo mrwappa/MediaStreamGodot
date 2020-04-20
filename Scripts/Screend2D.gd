@@ -50,6 +50,12 @@ func _process(delta):
 	var currentAudioPosition = audioPlayer.get_playback_position()
 	#print(currentAudioDuration - currentAudioPosition)
 	#print(resources.playlist.size())
+	
+	if(audioPlayer.is_playing()):
+		videoPlayer.audioPosition = currentAudioPosition
+		videoPlayer.audioLength = currentAudioDuration
+		pass
+	
 	if((currentAudioDuration - currentAudioPosition) < 0.09): 
 		audioPlayer.stop()
 		newMediaSet()
