@@ -8,6 +8,10 @@ func _init():
 func getRandomListItem(list) :
 	return list[rng.randi_range(0, list.size() - 1)]
 	pass
+	
+func randIRange(from, to):
+	return rng.randi_range(from, to)
+	pass
 
 func listFilesInDirectory(path):
 	var files = []

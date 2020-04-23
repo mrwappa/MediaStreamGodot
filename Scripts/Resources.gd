@@ -23,8 +23,6 @@ var playlist = []
 func loadAllMedia():
 	loadMusicAndArt()
 	loadVideos()
-	randomize()
-	playlist.shuffle()
 	print(playlist.size())
 	pass
 
@@ -100,14 +98,16 @@ func getMediaSet():
 	pass
 
 func loadMusicAndArt(): 
+	randomize()
 	musicFolders = utility.listFilesInDirectory(musicPath)
-	
+	musicFolders.shuffle()
 	for folder in musicFolders:
 		var files = utility.listFilesInDirectory(musicPath + folder)
+		files.shuffle()
 		musicDictionary[folder] = []
 		for file in files: 
 			if(file.find(".ogg") != -1):
-				playlist.push_back({ "path": musicPath + folder + "/" + file, "subFolder": null })
+				musicDictionary[folder].push_back({ "path": musicPath + folder + "/" + file, "subFolder": null })
 				pass
 			elif(file.find("art.png") != -1 or file.find("art.jpg") != -1):
 				artDictionary[folder] = file
@@ -116,13 +116,35 @@ func loadMusicAndArt():
 				var subFolderFiles = utility.listFilesInDirectory(musicPath + folder + "/" + file)
 				for subFile in subFolderFiles:
 					if (subFile.find(".ogg") != -1):
-						playlist.push_back({ "path": musicPath + folder + "/" + file + "/" + subFile, "subFolder": file })
+						musicDictionary[folder].push_back({ "path": musicPath + folder + "/" + file + "/" + subFile, "subFolder": file })
 						pass
 					pass
+			pass
+		pass
+		musicDictionary[folder].shuffle()
+	pass
+	
+	while musicDictionary.size() > 0:
+		for folder in musicDictionary:
+			var currentFolder = musicDictionary[folder]
+			print(folder)
+			if(currentFolder.size() == 0):
+				musicDictionary.erase(folder)
+				break
+				pass
+			if(currentFolder.size() <= 3):
+				playlist = playlist + musicDictionary[folder]
+				musicDictionary.erase(folder)
+				break
+				pass
+			if(currentFolder.size() > 3):
+				var randomIndex = utility.randIRange(0,playlist.size() - 1)
+				playlist.insert(randomIndex, musicDictionary[folder].pop_back())
+				playlist.insert(randomIndex, musicDictionary[folder].pop_back())
 				pass
 		pass
 	pass
-	
+		
 func loadVideos():
 	videoFolders = utility.listFilesInDirectory(videoPath)
 	
@@ -139,6 +161,5 @@ func loadVideos():
 			videoDictionary[folder] = files
 			videoDictionaryIndex[folder] = 0
 			pass
-		
 		pass
 	pass
