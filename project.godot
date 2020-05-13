@@ -19,6 +19,10 @@ config/name="VideoMusicStream"
 run/main_scene="res://Scene/Node2D.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+mix_rate=88200
+
 [display]
 
 window/size/width=1920
