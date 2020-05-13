@@ -2,8 +2,10 @@ extends Node
 
 var utility = preload("Utility.gd").new()
 
-const musicPath = "res://Music/"
-const videoPath = "res://Videos/"
+const mediaFolder = "Anime"
+
+var musicPath = "res://Media/" + mediaFolder + "/Music/"
+var videoPath = "res://Media/" + mediaFolder + "/Videos/"
 
 var musicFolders = []
 var videoFolders = []
@@ -14,7 +16,7 @@ var artDictionary = {}
 
 const targetFolder = ""
 
-const contentFolderStartIndex = 12
+var contentFolderStartIndex = 19 + mediaFolder.length()
 
 var firstSong = true
 
