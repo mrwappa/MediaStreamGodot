@@ -2,7 +2,7 @@ extends Node
 
 var utility = preload("Utility.gd").new()
 
-const mediaFolder = "Anime"
+const mediaFolder = "Games"
 
 var musicPath = "res://Media/" + mediaFolder + "/Music/"
 var videoPath = "res://Media/" + mediaFolder + "/Videos/"

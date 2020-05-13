@@ -34,7 +34,7 @@ var audioPosition = 0.0001
 var audioLength = 0.0001
 
 func _ready():
-	set_size(windowSize + Vector2(50,50))
+	set_size(windowSize)
 	pass
 
 func _process(delta):
