@@ -139,7 +139,7 @@ func loadMusicAndArt():
 				break
 				pass
 			if(currentFolder.size() > 3):
-				var randomIndex = utility.randIRange(0,max(playlist.size() - 2,0))
+				var randomIndex = utility.randIRange(0,max(playlist.size() - 1,0))
 				playlist.insert(randomIndex, musicDictionary[folder].pop_back())
 				playlist.insert(randomIndex, musicDictionary[folder].pop_back())
 				pass
