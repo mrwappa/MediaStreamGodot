@@ -128,7 +128,7 @@ func loadMusicAndArt():
 	while musicDictionary.size() > 0:
 		for folder in musicDictionary:
 			var currentFolder = musicDictionary[folder]
-			print(folder)
+			#print(folder)
 			if(currentFolder.size() == 0):
 				musicDictionary.erase(folder)
 				break
