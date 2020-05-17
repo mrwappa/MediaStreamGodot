@@ -2,10 +2,8 @@ extends Node
 
 var utility = preload("Utility.gd").new()
 
-const mediaFolder = "Games"
-
-var musicPath = "res://Media/" + mediaFolder + "/Music/"
-var videoPath = "res://Media/" + mediaFolder + "/Videos/"
+var musicPath = ""
+var videoPath = ""
 
 var musicFolders = []
 var videoFolders = []
@@ -16,7 +14,7 @@ var artDictionary = {}
 
 const targetFolder = ""
 
-var contentFolderStartIndex = 19 + mediaFolder.length()
+var contentFolderStartIndex = 0
 
 var firstSong = true
 
@@ -29,6 +27,12 @@ func loadAllMedia():
 	pass
 
 func _init():
+	
+	var mediaFolder = utility.findExtensionFile(".mediaFolder", "MediaContent.mediaFolder")
+	musicPath = "res://Media/" + mediaFolder + "/Music/"
+	videoPath = "res://Media/" + mediaFolder + "/Videos/"
+	contentFolderStartIndex = 19 + mediaFolder.length()
+	
 	if(targetFolder != ""):
 		playlist.invert()
 		pass 

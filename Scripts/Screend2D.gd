@@ -30,8 +30,9 @@ func newMediaSet():
 func _ready():
 	set_process(true)
 	
-	var audioDevice = findAudioDeviceFile()
+	var audioDevice = resources.utility.findExtensionFile(".audioDevice","Default.audioDevice")
 	AudioServer.set_device(audioDevice)
+	print(AudioServer.get_device_list())
 	
 	var screen_size = OS.get_screen_size()
 	var window_size = OS.get_window_size()
@@ -72,31 +73,4 @@ func _process(delta):
 		pass
 	pass
 
-func findAudioDeviceFile():
-	var fileExtension = ".audioDevice"
-	var dir = Directory.new()
-	dir.open("res://")
-	dir.list_dir_begin()
-	var file = null
-	
-	while true:
-		file = dir.get_next()
-		if file == "":
-			break
-		elif not file.begins_with(".") and file.find(fileExtension) > 0:
-			break
-	
-	dir.list_dir_end()
-	
-	if(file == ""):
-		var newAudioFile = "Default.audioDevice"
-		var newFile = File.new()
-		newFile.open(newAudioFile, File.WRITE)
-		newFile.close()
-		file = newAudioFile
-		pass
-	
-	file = file.substr(0, file.length() - fileExtension.length())
 
-	return file
-	pass

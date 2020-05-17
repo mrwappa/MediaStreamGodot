@@ -30,6 +30,33 @@ func listFilesInDirectory(path):
 
 	return files
 	pass
+	
+func findExtensionFile(fileExtension, defaultFile):
+	var dir = Directory.new()
+	dir.open("res://")
+	dir.list_dir_begin()
+	var file = null
+	
+	while true:
+		file = dir.get_next()
+		if file == "":
+			break
+		elif not file.begins_with(".") and file.find(fileExtension) > 0:
+			break
+	
+	dir.list_dir_end()
+	
+	if(file == ""):
+		var newFile = File.new()
+		newFile.open(defaultFile, File.WRITE)
+		newFile.close()
+		file = defaultFile
+		pass
+	
+	file = file.substr(0, file.length() - fileExtension.length())
+
+	return file
+	pass
 
 func characterIs(character,string): 
 	for aChar in string:
